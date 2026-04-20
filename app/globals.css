@@ -1,0 +1,233 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-plus-jakarta-sans);
+
+  /* Brand Colors */
+  --color-primary: #ec2020;
+  --color-primary-dim: #d11a1a;
+  --color-secondary: #fd7e91;
+  --color-secondary-dim: #f47789;
+
+  /* Surface Colors */
+  --color-surface: #0a0a0a;
+  --color-surface-bright: #1a1a1a;
+  --color-surface-dim: #0a0a0a;
+  --color-surface-container: #0f0f0f;
+  --color-surface-container-low: #1a0408;
+  --color-surface-container-high: #141414;
+  --color-surface-container-highest: #1f1f1f;
+  --color-surface-container-lowest: #050505;
+  --color-surface-variant: #48121d;
+  --color-surface-tint: #ec2020;
+
+  /* On-Surface Colors */
+  --color-on-surface: #ffdde0;
+  --color-on-surface-variant: #dc9aa0;
+  --color-on-background: #ffdde0;
+
+  /* Error Colors */
+  --color-error: #ff6e84;
+  --color-error-dim: #d73357;
+  --color-error-container: #a70138;
+  --color-on-error: #490013;
+  --color-on-error-container: #ffb2b9;
+
+  /* Other Colors */
+  --color-outline: #a0656c;
+  --color-outline-variant: #6b3940;
+  --color-inverse-surface: #fff8f7;
+  --color-inverse-on-surface: #7a464c;
+  --color-inverse-primary: #b32a23;
+  --color-background: #050505;
+
+  /* Primary container */
+  --color-primary-container: #ff7668;
+  --color-on-primary: #ffffff;
+  --color-on-primary-container: #4f0002;
+  --color-primary-fixed: #ff7668;
+  --color-primary-fixed-dim: #ff5252;
+  --color-on-primary-fixed: #000000;
+  --color-on-primary-fixed-variant: #600003;
+
+  /* Secondary container */
+  --color-secondary-container: #842136;
+  --color-on-secondary: #57001a;
+  --color-on-secondary-container: #ffc0c6;
+  --color-secondary-fixed: #ffc2c8;
+  --color-secondary-fixed-dim: #ffaeb7;
+  --color-on-secondary-fixed: #6a0b25;
+  --color-on-secondary-fixed-variant: #912b3f;
+
+  /* Tertiary */
+  --color-tertiary: #daa7ff;
+  --color-tertiary-dim: #c388f0;
+  --color-tertiary-container: #d195ff;
+  --color-on-tertiary: #53187e;
+  --color-on-tertiary-container: #480773;
+  --color-tertiary-fixed: #d399ff;
+  --color-tertiary-fixed-dim: #c58af3;
+  --color-on-tertiary-fixed: #290046;
+  --color-on-tertiary-fixed-variant: #54197f;
+}
+
+/* ─── Base Styles ─── */
+
+@layer base {
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  }
+
+  html, body {
+    background-color: #050505 !important;
+    color: #dfe4fe;
+  }
+
+  body {
+    font-family: var(--font-sans), sans-serif;
+    background-image:
+      radial-gradient(circle at 50% 0%, rgba(236, 32, 32, 0.08) 0%, transparent 50%),
+      radial-gradient(circle at 100% 100%, rgba(236, 32, 32, 0.05) 0%, transparent 40%),
+      radial-gradient(circle at 0% 100%, rgba(236, 32, 32, 0.03) 0%, transparent 40%);
+    background-attachment: fixed;
+  }
+}
+
+/* ─── Component Styles ─── */
+
+.glass-card {
+  background: rgba(15, 15, 15, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-card:hover {
+  border-color: rgba(236, 32, 32, 0.6);
+  box-shadow: 0 0 25px rgba(236, 32, 32, 0.2);
+  transform: translateY(-4px);
+}
+
+.primary-gradient {
+  background: linear-gradient(135deg, #ec2020 0%, #a70138 100%);
+}
+
+.red-glow {
+  filter: drop-shadow(0 0 15px rgba(236, 32, 32, 0.4));
+}
+
+.claw-indicator {
+  height: 4px;
+  width: 40px;
+  background-color: #ec2020;
+  border-radius: 2px;
+}
+
+/* Interactive icon hover */
+.interactive-icon {
+  transition: all 0.3s ease;
+}
+.group:hover .interactive-icon {
+  color: #ec2020;
+  filter: drop-shadow(0 0 8px rgba(236, 32, 32, 0.6));
+  transform: scale(1.1);
+}
+
+/* Pricing card hover */
+.pricing-card-hover:hover {
+  box-shadow: 0 0 30px rgba(236, 32, 32, 0.15);
+  border-color: rgba(236, 32, 32, 0.4) !important;
+}
+
+/* ─── Animations ─── */
+
+@keyframes pulse-red {
+  0% {
+    box-shadow: 0 0 0 0 rgba(236, 32, 32, 0.4);
+    transform: scale(1);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(236, 32, 32, 0);
+    transform: scale(1.02);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(236, 32, 32, 0);
+    transform: scale(1);
+  }
+}
+.animate-pulse-red {
+  animation: pulse-red 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); opacity: 0; }
+  50% { opacity: 0.5; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+.scan-line-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+.scan-line {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, rgba(236, 32, 32, 0.4), transparent);
+  animation: scanline 8s linear infinite;
+}
+
+@keyframes eye-pulse {
+  0%, 100% { transform: scale(1); filter: blur(2px) brightness(1); }
+  50% { transform: scale(1.1); filter: blur(4px) brightness(1.5); }
+}
+.eye-core {
+  animation: eye-pulse 2s ease-in-out infinite;
+}
+
+@keyframes claw-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.claw-float {
+  animation: claw-float 4s ease-in-out infinite;
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes spin-slow-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 4s linear infinite;
+}
+.animate-spin-slow-reverse {
+  animation: spin-slow-reverse 3s linear infinite;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee 40s linear infinite;
+}
+.animate-marquee-reverse {
+  animation: marquee 50s linear infinite reverse;
+}
+
+@keyframes claw-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 0px rgba(236, 32, 32, 0));
+  }
+  50% {
+    filter: drop-shadow(0 0 18px rgba(236, 32, 32, 0.8));
+  }
+}
+.animate-claw-glow {
+  animation: claw-glow 2s ease-in-out infinite;
+}
